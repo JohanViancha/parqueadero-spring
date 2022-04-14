@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.parqueadero.uts.models.dao.ITipoVehiculoDao;
+import com.parqueadero.uts.models.entities.Tarifa;
 import com.parqueadero.uts.models.entities.TipoVehiculo;
 @Service
 public class TipoVehiculoImpl implements ITipoVehiculoService {
@@ -18,7 +19,6 @@ public class TipoVehiculoImpl implements ITipoVehiculoService {
 	@Transactional(readOnly=true)
 	public List<TipoVehiculo> findAll() {
 		return (List<TipoVehiculo>) tipoDao.findAll();
-		
 	}
 
 	@Override
@@ -36,9 +36,16 @@ public class TipoVehiculoImpl implements ITipoVehiculoService {
 	@Override
 	@Transactional
 	public void delete(TipoVehiculo tipovehiculo) {
-		tipoDao.delete(tipovehiculo);
-		
+		tipoDao.delete(tipovehiculo);		
 	}
+	
+	/*@Override
+	@Transactional(readOnly=true)
+	public List<Tarifa> findAllTarifas() {
+		return (List<Tarifa>) tipoDao.findAllTarifas();
+	}*/
+	
+	
 
 }
 

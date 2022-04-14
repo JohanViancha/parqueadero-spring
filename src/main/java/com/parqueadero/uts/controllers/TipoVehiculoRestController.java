@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.parqueadero.uts.models.entities.Tarifa;
 import com.parqueadero.uts.models.entities.TipoVehiculo;
 import com.parqueadero.uts.models.services.ITipoVehiculoService;
 
@@ -103,7 +104,7 @@ public class TipoVehiculoRestController {
 		}
 		
 		try{
-			currentTipo.setTipoVehiculo(tipoVehiculo.getTipoVehiculo());
+			currentTipo.setTipo(tipoVehiculo.getTipo());
 			updateTipo=this.tipoVehiculoService.save(currentTipo);
 			
 		}catch(DataAccessException e){
@@ -136,8 +137,12 @@ public class TipoVehiculoRestController {
 
 		response.put("mensaje", "el tipo de vehiculo fue eliminado con éxito");
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
-
 	}
+	
+	/*@GetMapping("/tipoVehiculo/tarifas")
+	public List<Tarifa> listarTarifas(){
+		return tipoVehiculoService.findAllTarifas();
+	}*/
 
 
 }

@@ -2,7 +2,7 @@ package com.parqueadero.uts.models.services;
 
 import java.util.List;
 
-
+import com.parqueadero.uts.models.entities.Tarifa;
 import com.parqueadero.uts.models.entities.TipoVehiculo;
 
 
@@ -14,4 +14,6 @@ public List<TipoVehiculo> findAll();
 	public TipoVehiculo save(TipoVehiculo tipoVehiculo);
 	
 	public void delete(TipoVehiculo tipoVehiculo);
+	
+	/*public List<Tarifa> findAllTarifas();*/
 }
