@@ -24,3 +24,9 @@ INSERT INTO tarifas (id,valor,tipo_id)VALUES(1,2500,1);
 INSERT INTO tarifas (id,valor,tipo_id)VALUES(2,1500,2);
 INSERT INTO tarifas (id,valor,tipo_id)VALUES(3,4000,3);
 INSERT INTO tarifas (id,valor,tipo_id)VALUES(4,500,4);
+
+INSERT INTO vehiculos (id,marca,modelo,placa,tipo_id)VALUES(1,'chevrolet','2010a','abc1',1);
+INSERT INTO vehiculos (id,marca,modelo,placa,tipo_id)VALUES(2,'suzuky','20va','qwe2',2);
+INSERT INTO vehiculos (id,marca,modelo,placa,tipo_id)VALUES(3,'ford','1032d','vgh4',3);
+INSERT INTO vehiculos (id,marca,modelo,placa,tipo_id)VALUES(4,'titanium','2015h','gdr6',4);
+

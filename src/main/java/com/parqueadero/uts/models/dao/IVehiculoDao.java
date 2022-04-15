@@ -8,8 +8,12 @@ import org.springframework.stereotype.Component;
 
 import com.parqueadero.uts.models.entities.Tarifa;
 import com.parqueadero.uts.models.entities.TipoVehiculo;
+import com.parqueadero.uts.models.entities.Vehiculo;
 @Component
-public interface ITipoVehiculoDao extends CrudRepository<TipoVehiculo,Long>{
+public interface IVehiculoDao extends CrudRepository<Vehiculo,Long>{
 	@Query("from Tarifa")
 	public List<Tarifa> findAllTarifas();
+	
+	@Query("from TipoVehiculo")
+	public List<TipoVehiculo> findAllTipoVehiculos();
 }

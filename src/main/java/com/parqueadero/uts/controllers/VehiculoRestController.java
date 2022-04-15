@@ -25,30 +25,31 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.parqueadero.uts.models.entities.Tarifa;
 import com.parqueadero.uts.models.entities.TipoVehiculo;
-import com.parqueadero.uts.models.services.ITipoVehiculoService;
+import com.parqueadero.uts.models.entities.Vehiculo;
+import com.parqueadero.uts.models.services.IVehiculoService;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
 @RequestMapping("/api")
-public class TipoVehiculoRestController {
+public class VehiculoRestController {
 	
 	@Autowired
-	private ITipoVehiculoService tipoVehiculoService;
+	private IVehiculoService vehiculoService;
 
-	@GetMapping("/tiposVehiculos")
-	public List<TipoVehiculo> index() {
-		return tipoVehiculoService.findAll();
+	@GetMapping("/vehiculos")
+	public List<Vehiculo> index() {
+		return vehiculoService.findAll();
 	}
 
-	@GetMapping("/tipoVehiculo/{id}")
-	public TipoVehiculo show(@PathVariable Long id) {
-		return tipoVehiculoService.findById(id);
+	@GetMapping("/vehiculo/{id}")
+	public Vehiculo show(@PathVariable Long id) {
+		return vehiculoService.findById(id);
 	}
 
-	@PostMapping("/tiposVehiculos")
-	public ResponseEntity<?> create(@Valid @RequestBody TipoVehiculo tipoVehiculo, BindingResult result) {
+	@PostMapping("/vehiculos")
+	public ResponseEntity<?> create(@Valid @RequestBody Vehiculo vehiculo, BindingResult result) {
 
-		TipoVehiculo tipoVehiculoNew = null;
+		Vehiculo vehiculoNew = null;
 
 		Map<String, Object> response = new HashMap<>();
 
@@ -63,25 +64,25 @@ public class TipoVehiculoRestController {
 		}
 
 		try {
-			tipoVehiculoNew = this.tipoVehiculoService.save(tipoVehiculo);
+			vehiculoNew = this.vehiculoService.save(vehiculo);
 		} catch (DataAccessException e) {
 			response.put("mensaje", "Error al realizar el insert en la base de datos");
 			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		response.put("mensaje", "El tipo del vehiculo ha sido creado con éxito!");
-		response.put("tipo del vehiculo", tipoVehiculoNew);
+		response.put("mensaje", "El vehiculo ha sido creado con éxito!");
+		response.put("vehiculo", vehiculoNew);
 
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 
 	}
 
-	@PutMapping("/tipoVehiculo/{id}")	
-	public ResponseEntity<?> update(@Valid @RequestBody TipoVehiculo tipoVehiculo,BindingResult result,@PathVariable  Long id){
+	@PutMapping("/vehiculo/{id}")	
+	public ResponseEntity<?> update(@Valid @RequestBody Vehiculo vehiculo,BindingResult result,@PathVariable  Long id){
 		
-		TipoVehiculo currentTipo=this.tipoVehiculoService.findById(id);
+		Vehiculo currentVehiculo=this.vehiculoService.findById(id);
 		
-		TipoVehiculo updateTipo=null;
+		Vehiculo updateVehiculo=null;
 		
         Map<String, Object> response=new HashMap<>();
 		
@@ -96,16 +97,19 @@ public class TipoVehiculoRestController {
 		
 		}
 		
-		if(currentTipo==null){
-			response.put("mensaje", "Error: no se puede editar,el tipo del vehiculo  ID: ".concat(id.toString())
+		if(currentVehiculo==null){
+			response.put("mensaje", "Error: no se puede editar el vehiculo  ID: ".concat(id.toString())
 					.concat(" no existe en la base de datos"));
 			return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);		   
 			
 		}
 		
 		try{
-			currentTipo.setTipo(tipoVehiculo.getTipo());
-			updateTipo=this.tipoVehiculoService.save(currentTipo);
+			currentVehiculo.setPlaca(vehiculo.getPlaca());
+			currentVehiculo.setMarca(vehiculo.getMarca());
+			currentVehiculo.setModelo(vehiculo.getModelo());
+			
+			updateVehiculo=this.vehiculoService.save(currentVehiculo);
 			
 		}catch(DataAccessException e){
 			response.put("mensaje", "Error al actulizar en la base de datos");
@@ -113,35 +117,40 @@ public class TipoVehiculoRestController {
 			return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
 			
 		}
-		response.put("mensaje","el tipo del vehiculo ha sido actulizada con éxito!");
-		response.put("tipo vehiculo", updateTipo);		
+		response.put("mensaje","el vehiculo ha sido actulizada con éxito!");
+		response.put(" vehiculo", updateVehiculo);		
 		return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);	
 		
 	}
 
-	@DeleteMapping("/tipoVehiculo/{id}")
+	@DeleteMapping("/vehiculo/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 
 		Map<String, Object> response = new HashMap<>();
 		try {
 
-			TipoVehiculo tipoVehiculo = this.tipoVehiculoService.findById(id);
-			this.tipoVehiculoService.delete(tipoVehiculo);
+			Vehiculo vehiculo = this.vehiculoService.findById(id);
+			this.vehiculoService.delete(vehiculo);
 
 		} catch (DataAccessException e) {
-			response.put("mensaje", "Error al eliminar el tipo del vehiculo en la base de datos");
+			response.put("mensaje", "Error al eliminar el vehiculo en la base de datos");
 			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		response.put("mensaje", "el tipo de vehiculo fue eliminado con éxito");
+		response.put("mensaje", "el vehiculo fue eliminado con éxito");
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
 	
-	@GetMapping("/tipoVehiculo/tarifas")
+	@GetMapping("/vehiculo/tarifas")
 	public List<Tarifa> listarTarifas(){
-		return tipoVehiculoService.findAllTarifas();
+		return vehiculoService.findAllTarifas();
+	}
+	
+	@GetMapping("/vehiculo/tiposVehiculos")
+	public List<TipoVehiculo> listarTiposVehiculos(){
+		return vehiculoService.findAllTipoVehiculos();
 	}
 
 
