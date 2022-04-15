@@ -20,7 +20,7 @@ INSERT INTO tipo_vehiculo (id,tipo)VALUES(2,'Moto');
 INSERT INTO tipo_vehiculo (id,tipo)VALUES(3,'Camion');
 INSERT INTO tipo_vehiculo (id,tipo)VALUES(4,'Cicla');
 
-INSERT INTO tarifas (valor,tipo_id)VALUES(1,2500);
-INSERT INTO tarifas (valor,tipo_id)VALUES(2,1500);
-INSERT INTO tarifas (valor,tipo_id)VALUES(3,4000);
-INSERT INTO tarifas (valor,tipo_id)VALUES(4,500);
+INSERT INTO tarifas (id,valor,tipo_id)VALUES(1,2500,1);
+INSERT INTO tarifas (id,valor,tipo_id)VALUES(2,1500,2);
+INSERT INTO tarifas (id,valor,tipo_id)VALUES(3,4000,3);
+INSERT INTO tarifas (id,valor,tipo_id)VALUES(4,500,4);

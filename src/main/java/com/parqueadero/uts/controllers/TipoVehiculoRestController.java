@@ -139,10 +139,10 @@ public class TipoVehiculoRestController {
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
 	
-	/*@GetMapping("/tipoVehiculo/tarifas")
+	@GetMapping("/tipoVehiculo/tarifas")
 	public List<Tarifa> listarTarifas(){
 		return tipoVehiculoService.findAllTarifas();
-	}*/
+	}
 
 
 }

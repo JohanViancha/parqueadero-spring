@@ -39,11 +39,11 @@ public class TipoVehiculoImpl implements ITipoVehiculoService {
 		tipoDao.delete(tipovehiculo);		
 	}
 	
-	/*@Override
+	@Override
 	@Transactional(readOnly=true)
 	public List<Tarifa> findAllTarifas() {
-		return (List<Tarifa>) tipoDao.findAllTarifas();
-	}*/
+		return  tipoDao.findAllTarifas();
+	}
 	
 	
 

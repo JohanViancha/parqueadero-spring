@@ -15,5 +15,5 @@ public List<TipoVehiculo> findAll();
 	
 	public void delete(TipoVehiculo tipoVehiculo);
 	
-	/*public List<Tarifa> findAllTarifas();*/
+	public List<Tarifa> findAllTarifas();
 }

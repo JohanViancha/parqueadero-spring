@@ -10,6 +10,6 @@ import com.parqueadero.uts.models.entities.Tarifa;
 import com.parqueadero.uts.models.entities.TipoVehiculo;
 @Component
 public interface ITipoVehiculoDao extends CrudRepository<TipoVehiculo,Long>{
-	/*@Query("from tarifas")
-	public List<Tarifa> findAllTarifas();*/
+	@Query("from Tarifa")
+	public List<Tarifa> findAllTarifas();
 }
