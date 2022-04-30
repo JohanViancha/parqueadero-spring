@@ -47,6 +47,14 @@ INSERT INTO factura (ingreso_id,fecha_hora_salida, valor_pago)VALUES(4,'2022-12-
 
 
 
+INSERT INTO roles (nombre) VALUES ('ROLE_USER');
+INSERT INTO roles (nombre) VALUES ('ROLE_ADMIN');
+
+INSERT INTO usuarios_roles (usuario_id, role_id) VALUES (1, 1);
+INSERT INTO usuarios_roles (usuario_id, role_id) VALUES (2, 2);
+INSERT INTO usuarios_roles (usuario_id, role_id) VALUES (2, 1);
+
+
 
 
 

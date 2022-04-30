@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
  * @author USUARIO
  */
 
-@Service
 public interface IUsuarioService {
     
     
@@ -24,5 +23,9 @@ public interface IUsuarioService {
     public Usuario save(Usuario usuario);
     
     public void delete(Usuario usuario);
+    
+    public Usuario findByEmail(String email);
+	
+	
     
 }

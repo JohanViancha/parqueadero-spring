@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,11 +45,13 @@ public class UsuarioRestController {
 		return usuarioService.findAll();
 	}
         
+                @Secured({"ROLE_ADMIN","ROLE_USER"})
                 @GetMapping("/usuario/{id}")
 	public Usuario show(@PathVariable Long id) {
 		return usuarioService.findById(id);
 	}
 
+                    @Secured({"ROLE_ADMIN"})
 	@PostMapping("/usuarios")
 	public ResponseEntity<?> save(@Valid @RequestBody Usuario usuario, BindingResult result) {
 

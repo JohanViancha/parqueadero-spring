@@ -27,6 +27,7 @@ import com.parqueadero.uts.models.entities.Tarifa;
 import com.parqueadero.uts.models.entities.TipoVehiculo;
 import com.parqueadero.uts.models.entities.Vehiculo;
 import com.parqueadero.uts.models.services.IVehiculoService;
+import org.springframework.security.access.annotation.Secured;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -41,11 +42,13 @@ public class VehiculoRestController {
 		return vehiculoService.findAll();
 	}
 
+                   @Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("/vehiculo/{id}")
 	public Vehiculo show(@PathVariable Long id) {
 		return vehiculoService.findById(id);
 	}
 
+                   @Secured({"ROLE_ADMIN"})
 	@PostMapping("/vehiculos")
 	public ResponseEntity<?> create(@Valid @RequestBody Vehiculo vehiculo, BindingResult result) {
 
@@ -77,7 +80,8 @@ public class VehiculoRestController {
 
 	}
 
-	@PutMapping("/vehiculo/{id}")	
+                @Secured({"ROLE_ADMIN"})
+                    @PutMapping("/vehiculo/{id}")	
 	public ResponseEntity<?> update(@Valid @RequestBody Vehiculo vehiculo,BindingResult result,@PathVariable  Long id){
 		
 		Vehiculo currentVehiculo=this.vehiculoService.findById(id);
@@ -123,6 +127,7 @@ public class VehiculoRestController {
 		
 	}
 
+                @Secured({"ROLE_ADMIN"})
 	@DeleteMapping("/vehiculo/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public ResponseEntity<?> delete(@PathVariable Long id) {
@@ -143,11 +148,13 @@ public class VehiculoRestController {
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
 	
+                    @Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("/vehiculo/tarifas")
 	public List<Tarifa> listarTarifas(){
 		return vehiculoService.findAllTarifas();
 	}
 	
+                    @Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("/vehiculo/tiposVehiculos")
 	public List<TipoVehiculo> listarTiposVehiculos(){
 		return vehiculoService.findAllTipoVehiculos();
