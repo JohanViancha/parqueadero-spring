@@ -30,3 +30,24 @@ INSERT INTO vehiculos (id,marca,modelo,placa,tipo_id)VALUES(2,'suzuky','20va','q
 INSERT INTO vehiculos (id,marca,modelo,placa,tipo_id)VALUES(3,'ford','1032d','vgh4',3);
 INSERT INTO vehiculos (id,marca,modelo,placa,tipo_id)VALUES(4,'titanium','2015h','gdr6',4);
 
+
+
+INSERT INTO usuarios (persona_id,email,password)VALUES(1,'juancamilo@gmail.com','1234');
+INSERT INTO usuarios (persona_id,email,password)VALUES(6,'vianchajohan@gmail.com', '1234');
+
+INSERT INTO ingresos (persona_id,vehiculo_id,usuario_id,bahia_id, fecha_hora_entrada)VALUES(1,2,1,3, '2022-01-10 10:00:00');
+INSERT INTO ingresos (persona_id,vehiculo_id,usuario_id,bahia_id, fecha_hora_entrada)VALUES(2,1,1,1, '2022-04-19 18:23:00');
+INSERT INTO ingresos (persona_id,vehiculo_id,usuario_id,bahia_id, fecha_hora_entrada)VALUES(2,2,1,3, '2022-05-7 21:41:00');
+INSERT INTO ingresos (persona_id,vehiculo_id,usuario_id,bahia_id, fecha_hora_entrada)VALUES(3,1,1,1, '2022-12-20 13:52:00');
+
+INSERT INTO factura (ingreso_id,fecha_hora_salida, valor_pago)VALUES(1,'2022-01-10 13:52:00', 3000);
+INSERT INTO factura (ingreso_id,fecha_hora_salida, valor_pago)VALUES(2,'2022-04-19 22:52:00', 5600);
+INSERT INTO factura (ingreso_id,fecha_hora_salida, valor_pago)VALUES(3,'2022-05-7 23:41:00', 1300);
+INSERT INTO factura (ingreso_id,fecha_hora_salida, valor_pago)VALUES(4,'2022-12-20 16:52:00', 8000);
+
+
+
+
+
+
+
