@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -23,7 +24,7 @@ public class Bahia implements Serializable{
 	@Column(name="nom_parq",nullable=false)
 	private String nombreParq;
 	
-	@NotEmpty(message="no puede estar vacio")	
+	@NotNull(message="no puede estar vacio")	
 	@Column(name="estado_parq",nullable=false)
 	private boolean estado;
 
@@ -50,6 +51,13 @@ public class Bahia implements Serializable{
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
+
+    @Override
+    public String toString() {
+        return "Bahia{" + "Id=" + Id + ", nombreParq=" + nombreParq + ", estado=" + estado + '}';
+    }
+        
+        
 	
 	private static final long serialVersionUID = 1L;
 }

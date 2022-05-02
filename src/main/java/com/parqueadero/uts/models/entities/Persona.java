@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 
@@ -20,21 +20,28 @@ public class Persona implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private Long Id;
 	
-	@NotEmpty(message="no puede estar vacio")
+	@NotNull(message="no puede estar vacio")
 	@Size(min=3, max=30, message="el tamaño debe estar entre 3 y 30")	
 	@Column(name="nom_persona",nullable=false)
 	private String nombre;
 	
-	@NotEmpty(message="no puede estar vacio")
+	@NotNull(message="no puede estar vacio")
 	@Size(min=3, max=30, message="el tamaño debe estar entre 3 y 30")	
 	@Column(name="ape_persona",nullable=false)
 	private String apellido;
 	
-	@NotEmpty(message="no puede estar vacio")
-	@Size(min=3, max=30, message="el tamaño debe estar entre 3 y 30")	
+                   @NotNull(message="no puede estar vacio")
 	@Column(name="num_documento",nullable=false)
 	private Long documento;
 
+                    public Long getId() {
+                        return Id;
+                    }
+
+                    public void setId(Long Id) {
+                        this.Id = Id;
+                    }
+         
 	public String getNombre() {
 		return nombre;
 	}
@@ -58,7 +65,14 @@ public class Persona implements Serializable {
 	public void setDocumento(Long documento) {
 		this.documento = documento;
 	}
+
+    @Override
+    public String toString() {
+        return "Persona{" + "Id=" + Id + ", nombre=" + nombre + ", apellido=" + apellido + ", documento=" + documento + '}';
+    }
 	
+        
+        
 	private static final long serialVersionUID = 1L;
 	
 }

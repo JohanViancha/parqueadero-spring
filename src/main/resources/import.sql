@@ -32,8 +32,13 @@ INSERT INTO vehiculos (id,marca,modelo,placa,tipo_id)VALUES(4,'titanium','2015h'
 
 
 
+<<<<<<< HEAD
 INSERT INTO usuarios (persona_id,email,password)VALUES(1,'juancamilo@gmail.com','$2a$10$pLQvxwsrJWNMmPxyaFVPGujMkcS7shC0SJqoLXVzFVFSveid3eiKy');
 INSERT INTO usuarios (persona_id,email,password)VALUES(6,'vianchajohan@gmail.com', '$2a$10$pLQvxwsrJWNMmPxyaFVPGujMkcS7shC0SJqoLXVzFVFSveid3eiKy');
+=======
+INSERT INTO usuarios (persona_id,username,password, enabled)VALUES(1,'juancamilo','$2a$10$xL1HiyRWfJrPZ.86dhjxO.OR7GerM/0Bh9BssLqvuxbTZZOkryjQ2',true);
+INSERT INTO usuarios (persona_id,username,password, enabled)VALUES(6,'vianchajohan', '$2a$10$xL1HiyRWfJrPZ.86dhjxO.OR7GerM/0Bh9BssLqvuxbTZZOkryjQ2',true);
+>>>>>>> 75ffd764046d925546cb9b069f8d309c643cf005
 
 INSERT INTO ingresos (persona_id,vehiculo_id,usuario_id,bahia_id, fecha_hora_entrada)VALUES(1,2,1,3, '2022-01-10 10:00:00');
 INSERT INTO ingresos (persona_id,vehiculo_id,usuario_id,bahia_id, fecha_hora_entrada)VALUES(2,1,1,1, '2022-04-19 18:23:00');

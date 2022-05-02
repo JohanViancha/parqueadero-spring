@@ -24,13 +24,15 @@ public class Vehiculo  implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
 	
+                   @NotNull(message = "no puede estar vacio")
 	@Column(nullable=false, unique=true,name="placa")
 	private String placa;
 	
-	@NotEmpty(message = "no puede estar vacio")
+	@NotNull(message = "no puede estar vacio")
 	@Column( nullable = false,name="marca")
 	private String marca;
 	
+                    @NotNull(message = "no puede estar vacio")
 	@Column( nullable = false,name="modelo")
 	private String modelo;
 	
@@ -80,8 +82,17 @@ public class Vehiculo  implements Serializable{
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
 	}
+
+                    @Override
+                    public String toString() {
+                        return "Vehiculo{" + "Id=" + Id + ", placa=" + placa + ", marca=" + marca + ", modelo=" + modelo + ", tipoVehiculo=" + tipoVehiculo + '}';
+                    }
+        
+        
+                    
 	
 	private static final long serialVersionUID = 1L;
 	
+        
 	
 }

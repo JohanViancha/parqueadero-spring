@@ -49,32 +49,33 @@ public class BahiaRestController {
                   @Secured({"ROLE_ADMIN"})
 	@PostMapping("/bahias")
 	public ResponseEntity<?> create(@Valid @RequestBody Bahia bahia, BindingResult result) {
+                                    
+            
+                        Bahia bahiaNew = null;
 
-		Bahia bahiaNew = null;
+                        Map<String, Object> response = new HashMap<>();
 
-		Map<String, Object> response = new HashMap<>();
+                        if (result.hasErrors()) {
+                                List<String> errors = result.getFieldErrors().stream()
+                                                .map(err -> "El campo " + err.getField() + " " + err.getDefaultMessage())
+                                                .collect(Collectors.toList());
 
-		if (result.hasErrors()) {
-			List<String> errors = result.getFieldErrors().stream()
-					.map(err -> "El campo " + err.getField() + " " + err.getDefaultMessage())
-					.collect(Collectors.toList());
+                                response.put("errors", errors);
+                                return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
 
-			response.put("errors", errors);
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
+                        }
 
-		}
+                        try {
+                                bahiaNew = this.bahiaService.save(bahia);
+                        } catch (DataAccessException e) {
+                                response.put("mensaje", "Error al realizar el insert en la base de datos");
+                                response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+                                return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+                        }
+                        response.put("mensaje", "La bahia ha sido creado con éxito!");
+                        response.put("bahia", bahiaNew);
 
-		try {
-			bahiaNew = this.bahiaService.save(bahia);
-		} catch (DataAccessException e) {
-			response.put("mensaje", "Error al realizar el insert en la base de datos");
-			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		response.put("mensaje", "La bahia ha sido creado con éxito!");
-		response.put("bahia", bahiaNew);
-
-		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+                        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 
 	}
         

@@ -38,20 +38,20 @@ public class Usuario implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private Long Id;
 	
-	@NotEmpty(message="no puede estar vacio")
+	@NotNull(message="no puede estar vacio")
 	@Size(min=3, max=30, message="el tamaño debe estar entre 3 y 30")	
-	@Column(name="email",nullable=false, unique=true)
-	private String email;
+	@Column(name="username",nullable=false, unique=true)
+	private String username;
         
-                @NotEmpty(message="no puede estar vacio")
-	@Size(min=8, max=30, message="el tamaño debe estar entre 8 y 30")	
+                @NotNull(message="no puede estar vacio")
+	@Size(min=8, max=255, message="el tamaño debe estar entre 8 y 255")	
 	@Column(name="password",nullable=false)
 	private String password;
                 
-                @NotNull(message="la persona  no puede ser vacia")
-	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="persona_id")
-	@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+                @NotNull(message=" no puede ser vacia")
+                 @ManyToOne(fetch=FetchType.LAZY)
+                @JoinColumn(name="persona_id")
+                @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
                 private Persona persona;
                 
                 private Boolean enabled;
@@ -79,14 +79,14 @@ public class Usuario implements Serializable{
                         this.Id = Id;
                     }
 
-                    public String getEmail() {
-                        return email;
+                    public String getUsername() {
+                        return username;
                     }
 
-                    public void setEmail(String email) {
-                        this.email = email;
+                    public void setUsername(String username) {
+                        this.username = username;
                     }
-
+                    
                     public String getPassword() {
                         return password;
                     }
@@ -110,7 +110,13 @@ public class Usuario implements Serializable{
                     public void setRoles(List<Role> roles) {
                         this.roles = roles;
                     }
+
+                    @Override
+                    public String toString() {
+                        return "Usuario{" + "Id=" + Id + ", username=" + username + ", password=" + password + ", persona=" + persona + ", enabled=" + enabled + ", roles=" + roles + '}';
+                    }
+
                 
-                
+                    
                 
 }

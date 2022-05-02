@@ -6,7 +6,6 @@ package com.parqueadero.uts.models.services;
 
 import com.parqueadero.uts.models.entities.Usuario;
 import java.util.List;
-import org.springframework.stereotype.Service;
 
 /**
  *
@@ -24,8 +23,8 @@ public interface IUsuarioService {
     
     public void delete(Usuario usuario);
     
-    public Usuario findByEmail(String email);
-	
+   public Usuario findByUsername(String username);
+		
 	
     
 }

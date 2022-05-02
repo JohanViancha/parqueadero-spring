@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -19,7 +20,7 @@ public class TipoVehiculo implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
 
-	@NotEmpty(message = "no puede estar vacio")
+	@NotNull(message = "no puede estar vacio")
 	@Size(min = 3, max = 30, message = "el tamaño debe estar entre 3 y 30")
 	@Column( nullable = false)
 	private String tipo;

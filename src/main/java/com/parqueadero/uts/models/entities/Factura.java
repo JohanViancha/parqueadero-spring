@@ -7,6 +7,7 @@ package com.parqueadero.uts.models.entities;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -35,16 +36,19 @@ public class Factura implements Serializable {
             @GeneratedValue(strategy = GenerationType.IDENTITY)	
             private Long Id;
       
-         
+            @NotNull(message="no puede estar vacio")
             @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-            @ManyToOne(fetch=FetchType.LAZY)
+            @ManyToOne(fetch=FetchType.LAZY,  cascade=CascadeType.ALL)
             @JoinColumn(name="ingreso_id",nullable=false)
+          
             private Ingreso ingreso;
             
+            @NotNull(message="no puede estar vacio")
              @Column(name="fecha_hora_salida",nullable=false)
-            @Temporal(TemporalType.DATE)
+            @Temporal(TemporalType.TIMESTAMP)
             private Date fechaSalida;
              
+            @NotNull(message="no puede estar vacio")
              @Column(name="valor_pago",nullable=false)
             private Double valorPago;
 
@@ -75,6 +79,13 @@ public class Factura implements Serializable {
             public Double getValorPago() {
                 return valorPago;
             }
+
+    @Override
+    public String toString() {
+        return "Factura{" + "Id=" + Id + ", ingreso=" + ingreso + ", fechaSalida=" + fechaSalida + ", valorPago=" + valorPago + '}';
+    }
+            
+            
 
             public void setValorPago(Double valorPago) {
                 this.valorPago = valorPago;
