@@ -56,6 +56,10 @@ public class IngresoRestController {
 	@PostMapping("/ingresos")
 	public ResponseEntity<?> registerEntry(@Valid @RequestBody Ingreso ingreso, BindingResult result) {
 
+                        System.out.println(ingreso.getPersona());
+                        System.out.println(ingreso.getUsuario());
+                        System.out.println(ingreso.getVehiculo());
+                        System.out.println(ingreso.getBahia());
                         Ingreso ingresoNew = null;
 
                         Map<String, Object> response = new HashMap<>();

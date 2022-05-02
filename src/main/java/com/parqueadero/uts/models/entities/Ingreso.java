@@ -7,6 +7,7 @@ package com.parqueadero.uts.models.entities;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,6 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -32,30 +34,37 @@ public class Ingreso  implements Serializable {
             @GeneratedValue(strategy = GenerationType.IDENTITY)	
             private Long Id;
 
+            
+            @NotNull(message=" no puede ser vacia")
+            @ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.MERGE)
+            @JoinColumn(name="persona_id")
             @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-            @ManyToOne(fetch=FetchType.LAZY)
-            @JoinColumn(name="persona_id", nullable=false)
             private Persona persona;
             
-            @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+            
+            @NotNull(message=" no puede ser vacia")
             @ManyToOne(fetch=FetchType.LAZY)
-            @JoinColumn(name="vehiculo_id", nullable=false)
+            @JoinColumn(name="vehiculo_id")
+            @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})     
             private Vehiculo vehiculo;
-            
-            
-            @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+             
+             
+             
+            @NotNull(message=" no puede ser vacia")
             @ManyToOne(fetch=FetchType.LAZY)
-            @JoinColumn(name="usuario_id", nullable=false)
+            @JoinColumn(name="usuario_id")
+            @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})     
             private Usuario usuario;
             
-            
-            @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+             @NotNull(message=" no puede ser vacia")
             @ManyToOne(fetch=FetchType.LAZY)
-            @JoinColumn(name="bahia_id", nullable=false)
+            @JoinColumn(name="bahia_id")
+            @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})               
             private Bahia bahia;
             
+            @NotNull(message="no puede estar vacio")
             @Column(name="fecha_hora_entrada", nullable=false)
-            @Temporal(TemporalType.DATE)
+            @Temporal(TemporalType.TIMESTAMP)
             private Date createAt;
 
             public Long getId() {
@@ -105,7 +114,13 @@ public class Ingreso  implements Serializable {
             public void setCreateAt(Date createAt) {
                 this.createAt = createAt;
             }
+
+    @Override
+    public String toString() {
+        return "Ingreso{" + "Id=" + Id + ", persona=" + persona + ", vehiculo=" + vehiculo + ", usuario=" + usuario + ", bahia=" + bahia + ", createAt=" + createAt + '}';
+    }
     
+            
             
     
             

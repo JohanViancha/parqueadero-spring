@@ -37,10 +37,10 @@ public class UsuarioServiceImpl implements IUsuarioService,UserDetailsService  {
     
     @Override
     @Transactional(readOnly=true)
-    public Usuario findByEmail(String email) {
-
-         return usuarioDao.findByEmail(email);
-
+    public Usuario findByUsername(String username) {
+        
+        System.out.println(usuarioDao.findByUsername(username).getPersona().getNombre());
+            return usuarioDao.findByUsername(username);
     }
     
     @Override
@@ -67,28 +67,27 @@ public class UsuarioServiceImpl implements IUsuarioService,UserDetailsService  {
          usuarioDao.delete(usuario);
     }
     
-    
-	@Override
-	@Transactional(readOnly=true)
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		
-		Usuario usuario=usuarioDao.findByEmail(email);
-		
-		if(usuario==null){
-		  logger.error("Error en el login: no existe el usuario "+email+" en el sistema!");
-		  throw new UsernameNotFoundException("Error en el login: no existe el usuario " +email+ " en el sistema!");
-		}
-		
-		List<GrantedAuthority> authorities = usuario.getRoles()
-				.stream()
-				.map(role-> new SimpleGrantedAuthority(role.getNombre()))
-				.peek(authority-> logger.info("Role: "+authority.getAuthority()))
-				.collect(Collectors.toList());
-		
-		return new User(usuario.getEmail(),usuario.getPassword(),usuario.getEnabled(),true,true,true,authorities);
-		
-		
-	}
+    @Override
+    @Transactional(readOnly=true)
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+            Usuario usuario=usuarioDao.findByUsername(username);
+
+            if(usuario==null){
+              logger.error("Error en el login: no existe el usuario "+username+" en el sistema!");
+              throw new UsernameNotFoundException("Error en el login: no existe el usuario " +username+ " en el sistema!");
+            }
+
+            List<GrantedAuthority> authorities = usuario.getRoles()
+                            .stream()
+                            .map(role-> new SimpleGrantedAuthority(role.getNombre()))
+                            .peek(authority-> logger.info("Role: "+authority.getAuthority()))
+                            .collect(Collectors.toList());
+
+            return new User(usuario.getUsername(),usuario.getPassword(),usuario.getEnabled(),true,true,true,authorities);
+
+
+    }
 
 
     
