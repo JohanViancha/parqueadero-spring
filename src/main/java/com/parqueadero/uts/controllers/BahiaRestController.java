@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.parqueadero.uts.models.entities.Bahia;
 import com.parqueadero.uts.models.services.IBahiaService;
+import org.springframework.security.access.annotation.Secured;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -38,12 +39,14 @@ public class BahiaRestController {
 	public List<Bahia> index() {
 		return bahiaService.findAll();
 	}
-
+                   
+                  @Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("/bahia/{id}")
 	public Bahia show(@PathVariable Long id) {
 		return bahiaService.findById(id);
 	}
 
+                  @Secured({"ROLE_ADMIN"})
 	@PostMapping("/bahias")
 	public ResponseEntity<?> create(@Valid @RequestBody Bahia bahia, BindingResult result) {
 
@@ -74,15 +77,16 @@ public class BahiaRestController {
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 
 	}
-
-	@PutMapping("/bahia/{id}")	
+        
+                    @Secured({"ROLE_ADMIN"})
+	@PutMapping("/bahia/{id}")  
 	public ResponseEntity<?> update(@Valid @RequestBody Bahia bahia,BindingResult result,@PathVariable  Long id){
 		
 		Bahia currentBahia=this.bahiaService.findById(id);
 		
 		Bahia updateBahia=null;
 		
-        Map<String, Object> response=new HashMap<>();
+                                    Map<String, Object> response=new HashMap<>();
 		
 		if(result.hasErrors()) {		
 			List<String> errors= result.getFieldErrors()
@@ -118,7 +122,8 @@ public class BahiaRestController {
 		return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);	
 		
 	}
-
+                    
+                  @Secured({"ROLE_ADMIN"})
 	@DeleteMapping("/bahia/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public ResponseEntity<?> delete(@PathVariable Long id) {

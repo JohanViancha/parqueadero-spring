@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.parqueadero.uts.models.entities.Persona;
 import com.parqueadero.uts.models.services.IPersonaService;
+import org.springframework.security.access.annotation.Secured;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -40,11 +41,13 @@ public class PersonaRestController {
 		return personaService.findAll();
 	}
 
+                   @Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("/persona/{id}")
 	public Persona show(@PathVariable Long id) {
 		return personaService.findById(id);
 	}
 
+                    @Secured({"ROLE_ADMIN"})
 	@PostMapping("/personas")
 	public ResponseEntity<?> create(@Valid @RequestBody Persona persona, BindingResult result) {
 
@@ -76,6 +79,7 @@ public class PersonaRestController {
 
 	}
 
+                   @Secured({"ROLE_ADMIN"})
 	@PutMapping("/persona/{id}")	
 	public ResponseEntity<?> update(@Valid @RequestBody Persona persona,BindingResult result,@PathVariable  Long id){
 		
@@ -121,6 +125,7 @@ public class PersonaRestController {
 		
 	}
 
+                   @Secured({"ROLE_ADMIN"})
 	@DeleteMapping("/persona/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public ResponseEntity<?> delete(@PathVariable Long id) {
