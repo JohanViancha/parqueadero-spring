@@ -47,13 +47,13 @@ public class FacturaRestController {
 		return facturaService.findAll();
 	}
                 
-                 @Secured({"ROLE_ADMIN","ROLE_USER"})
+                //  @Secured({"ROLE_ADMIN","ROLE_USER"})
                 @GetMapping("/factura/{id}")
 	public Factura show(@PathVariable Long id) {
 		return facturaService.findById(id);
 	}
                     
-                  @Secured({"ROLE_ADMIN"})
+                  // @Secured({"ROLE_ADMIN"})
 	@PostMapping("/facturas")
 	public ResponseEntity<?> create(@Valid @RequestBody Factura factura, BindingResult result) {
 

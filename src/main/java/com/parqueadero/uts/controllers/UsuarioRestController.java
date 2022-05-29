@@ -45,13 +45,13 @@ public class UsuarioRestController {
 		return usuarioService.findAll();
 	}
         
-                @Secured({"ROLE_ADMIN","ROLE_USER"})
+                // @Secured({"ROLE_ADMIN","ROLE_USER"})
                 @GetMapping("/usuario/{id}")
 	public Usuario show(@PathVariable Long id) {
 		return usuarioService.findById(id);
 	}
 
-                    @Secured({"ROLE_ADMIN"})
+                //     @Secured({"ROLE_ADMIN"})
 	@PostMapping("/usuarios")
 	public ResponseEntity<?> save(@Valid @RequestBody Usuario usuario, BindingResult result) {
 

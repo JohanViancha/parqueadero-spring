@@ -46,13 +46,13 @@ public class IngresoRestController {
 		return ingresoService.findAll();
 	}
                     
-                 @Secured({"ROLE_ADMIN","ROLE_USER"})
+                //  @Secured({"ROLE_ADMIN","ROLE_USER"})
                 @GetMapping("/ingreso/{id}")
 	public Ingreso show(@PathVariable Long id) {
 		return ingresoService.findById(id);
 	}
 
-                  @Secured({"ROLE_ADMIN"})
+                //   @Secured({"ROLE_ADMIN"})
 	@PostMapping("/ingresos")
 	public ResponseEntity<?> registerEntry(@Valid @RequestBody Ingreso ingreso, BindingResult result) {
 

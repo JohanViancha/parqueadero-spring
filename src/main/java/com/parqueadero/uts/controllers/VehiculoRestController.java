@@ -42,13 +42,13 @@ public class VehiculoRestController {
 		return vehiculoService.findAll();
 	}
 
-                   @Secured({"ROLE_ADMIN","ROLE_USER"})
+                  //  @Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("/vehiculo/{id}")
 	public Vehiculo show(@PathVariable Long id) {
 		return vehiculoService.findById(id);
 	}
 
-                   @Secured({"ROLE_ADMIN"})
+                  //  @Secured({"ROLE_ADMIN"})
 	@PostMapping("/vehiculos")
 	public ResponseEntity<?> create(@Valid @RequestBody Vehiculo vehiculo, BindingResult result) {
 
@@ -80,7 +80,7 @@ public class VehiculoRestController {
 
 	}
 
-                @Secured({"ROLE_ADMIN"})
+                // @Secured({"ROLE_ADMIN"})
                     @PutMapping("/vehiculo/{id}")	
 	public ResponseEntity<?> update(@Valid @RequestBody Vehiculo vehiculo,BindingResult result,@PathVariable  Long id){
 		
@@ -127,7 +127,7 @@ public class VehiculoRestController {
 		
 	}
 
-                @Secured({"ROLE_ADMIN"})
+                // @Secured({"ROLE_ADMIN"})
 	@DeleteMapping("/vehiculo/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public ResponseEntity<?> delete(@PathVariable Long id) {
@@ -148,13 +148,13 @@ public class VehiculoRestController {
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
 	
-                    @Secured({"ROLE_ADMIN","ROLE_USER"})
+                    // @Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("/vehiculo/tarifas")
 	public List<Tarifa> listarTarifas(){
 		return vehiculoService.findAllTarifas();
 	}
 	
-                    @Secured({"ROLE_ADMIN","ROLE_USER"})
+                    // @Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("/vehiculo/tiposVehiculos")
 	public List<TipoVehiculo> listarTiposVehiculos(){
 		return vehiculoService.findAllTipoVehiculos();

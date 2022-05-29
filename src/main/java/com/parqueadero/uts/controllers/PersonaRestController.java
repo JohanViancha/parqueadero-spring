@@ -41,13 +41,13 @@ public class PersonaRestController {
 		return personaService.findAll();
 	}
 
-                   @Secured({"ROLE_ADMIN","ROLE_USER"})
+                  //  @Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("/persona/{id}")
 	public Persona show(@PathVariable Long id) {
 		return personaService.findById(id);
 	}
 
-                    @Secured({"ROLE_ADMIN"})
+                    // @Secured({"ROLE_ADMIN"})
 	@PostMapping("/personas")
 	public ResponseEntity<?> create(@Valid @RequestBody Persona persona, BindingResult result) {
 
@@ -79,7 +79,7 @@ public class PersonaRestController {
 
 	}
 
-                   @Secured({"ROLE_ADMIN"})
+                  //  @Secured({"ROLE_ADMIN"})
 	@PutMapping("/persona/{id}")	
 	public ResponseEntity<?> update(@Valid @RequestBody Persona persona,BindingResult result,@PathVariable  Long id){
 		
@@ -125,7 +125,7 @@ public class PersonaRestController {
 		
 	}
 
-                   @Secured({"ROLE_ADMIN"})
+                  //  @Secured({"ROLE_ADMIN"})
 	@DeleteMapping("/persona/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public ResponseEntity<?> delete(@PathVariable Long id) {
