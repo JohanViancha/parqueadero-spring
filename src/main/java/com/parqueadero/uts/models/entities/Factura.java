@@ -43,7 +43,7 @@ public class Factura implements Serializable {
           
             private Ingreso ingreso;
             
-            @NotNull(message="no puede estar vacio")
+            //@NotNull(message="no puede estar vacio")
              @Column(name="fecha_hora_salida",nullable=false)
             @Temporal(TemporalType.TIMESTAMP)
             private Date fechaSalida;

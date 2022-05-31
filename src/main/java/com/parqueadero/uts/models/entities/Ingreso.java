@@ -62,7 +62,7 @@ public class Ingreso  implements Serializable {
             @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})               
             private Bahia bahia;
             
-            @NotNull(message="no puede estar vacio")
+            //@NotNull(message="no puede estar vacio")
             @Column(name="fecha_hora_entrada", nullable=false)
             @Temporal(TemporalType.TIMESTAMP)
             private Date createAt;
