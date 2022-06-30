@@ -38,7 +38,7 @@ public class Factura implements Serializable {
       
             @NotNull(message="no puede estar vacio")
             @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-            @ManyToOne(fetch=FetchType.LAZY,  cascade=CascadeType.ALL)
+            @ManyToOne(fetch=FetchType.LAZY,  cascade=CascadeType.MERGE)
             @JoinColumn(name="ingreso_id",nullable=false)
           
             private Ingreso ingreso;

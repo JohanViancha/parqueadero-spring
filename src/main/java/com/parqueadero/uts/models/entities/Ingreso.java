@@ -63,7 +63,7 @@ public class Ingreso  implements Serializable {
             private Bahia bahia;
             
             @NotNull(message="no puede estar vacio")
-            @Column(name="fecha_hora_entrada", nullable=false)
+            @Column(name="fecha_hora_entrada", nullable=true)
             @Temporal(TemporalType.TIMESTAMP)
             private Date createAt;
 
